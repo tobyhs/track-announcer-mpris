@@ -1,0 +1,14 @@
+#!/usr/bin/env python3
+
+import dbus
+from dbus.mainloop.glib import DBusGMainLoop
+from gi.repository import GLib
+from os import path
+import sys
+
+sys.path.insert(0, path.join(path.dirname(path.realpath(__file__)), '..'))
+
+from trackannouncer.cli import Runner
+
+DBusGMainLoop(set_as_default=True)
+Runner(dbus.SessionBus(), GLib.MainLoop()).run(sys.argv[1:])
